@@ -2,6 +2,7 @@ import json
 from datetime import date, timedelta
 import urllib.request
 import urllib.parse
+from naverAPI import getMovieImgUrl
 
 
 def getMoviesInfo() -> list:
@@ -20,7 +21,7 @@ def getMoviesInfo() -> list:
     cards = list()
     for top in boxoffice_json['boxOfficeResult']['dailyBoxOfficeList']:
         cards.append({
-            'imageUrl': "이미지 URL(Naver api로 받아올 예정)",
+            'imageUrl': getMovieImgUrl(top['movieNm']),
             'description': top['movieNm'],
             'title': 'TOP' + str(top['rank'])
         })
